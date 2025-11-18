@@ -27,85 +27,62 @@
 <script lang="ts">
 import Category from './components/Category.vue'
 import Banner from './components/Promotion.vue'
+import axios from 'axios'
 
 export default {
   name: 'App',
   components: {
+    FirstMessage,
     Category,
     Banner,
   },
 
   data() {
     return {
-      categories: [
-        { categoryName: 'Cake & Milk', num: 14, bgColor: '#F2FCE4', image: '' },
-        { categoryName: 'Peach', num: 17, bgColor: '#FFFCEB', image: '/images/category/peach.png' },
-        {
-          categoryName: 'Organic Kiwi',
-          num: 21,
-          bgColor: '#ECFFEC',
-          image: '/images/category/kiwi.png',
-        },
-        {
-          categoryName: 'Red Apple',
-          num: 68,
-          bgColor: '#FEEFEA',
-          image: '/images/category/apple.png',
-        },
-        { categoryName: 'Snack', num: 34, bgColor: '#FFF3EB', image: '/images/category/snack.png' },
-        {
-          categoryName: 'Black plum',
-          num: 25,
-          bgColor: '#FFF3FF',
-          image: '/images/category/blackplum.png',
-        },
-        {
-          categoryName: 'Vegetables',
-          num: 65,
-          bgColor: '#F2FCE4',
-          image: '/images/category/vegetables.png',
-        },
-        {
-          categoryName: 'Headphone',
-          num: 33,
-          bgColor: '#FFFCEB',
-          image: '/images/category/headphone.png',
-        },
-        {
-          categoryName: 'Cake & Milk',
-          num: 54,
-          bgColor: '#F2FCE4',
-          image: '/images/category/cakemike.png',
-        },
-        {
-          categoryName: 'Orange',
-          num: 63,
-          bgColor: '#FFF3FF',
-          image: '/images/category/orange.png',
-        },
-      ],
-
-      banners: [
-        {
-          title: 'Everyday Fresh & Clean with Our Products',
-          bgColor: '#F0E8D5',
-          bannerImage: '/images/banner/onion.jpg',
-          ButtonbgColor: '#3BB77E',
-        },
-        {
-          title: 'Make your Breakfast Healthy and Easy',
-          bgColor: '#F3E8E8',
-          bannerImage: '/images/banner/juice.png',
-          ButtonbgColor: '#3BB77E',
-        },
-        {
-          title: 'The best Organic Products Online',
-          bgColor: '#E7EAF3',
-          bannerImage: '/images/banner/basketofVegetables.jpg',
-          ButtonbgColor: '#FDC040',
-        },
-      ],
+      categories: [] as {
+        categoryName: string
+        num: number
+        bgColor: string
+        image: string
+      }[],
+      banners: [] as {
+        title: string
+        ButtonbgColor: string
+        bgColor: string
+        bannerImage: string
+      }[],
     }
+  },
+
+  methods: {
+    async fetchCategories() {
+      const result = await axios.get('http://localhost:3000/api/categories')
+      this.categories = result.data.map((cat: any) => ({
+        categoryName: cat.name,
+        num: cat.productCount,
+        bgColor: cat.color,
+        image: `http://localhost:3000/${cat.image.replace(/\\/g, '/')}`,
+      }))
+      console.log(result.data)
+      console.log(this.categories)
+    },
+
+    async fetchBanners() {
+      const result = await axios.get('http://localhost:3000/api/promotions')
+      this.banners = result.data.map((promo: any) => ({
+        title: promo.title,
+        ButtonbgColor: promo.buttonColor,
+        bgColor: promo.color,
+        bannerImage: `http://localhost:3000/${promo.image.replace(/\\/g, '/')}`,
+      }))
+      console.log(result.data)
+      console.log(this.banners)
+    },
+  },
+
+  mounted() {
+    this.fetchCategories()
+    this.fetchBanners()
   },
 }
 </script>

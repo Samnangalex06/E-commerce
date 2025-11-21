@@ -27,37 +27,49 @@
 <script lang="ts">
 import Category from './components/Category.vue'
 import Banner from './components/Promotion.vue'
-import axios from 'axios'
+import axios from 'axios';
 
-export default {
-  name: 'App',
-  components: {
-    FirstMessage,
-    Category,
-    Banner,
-  },
+  interface CategoryDto {
+    name: string
+    productCount: number
+    color: string
+    image: string
+  }
 
-  data() {
-    return {
-      categories: [] as {
-        categoryName: string
-        num: number
-        bgColor: string
-        image: string
-      }[],
-      banners: [] as {
-        title: string
-        ButtonbgColor: string
-        bgColor: string
-        bannerImage: string
-      }[],
-    }
-  },
+  interface PromotionDto {
+    title: string
+    buttonColor: string
+    color: string
+    image: string
+  }
+
+  export default {
+    name: 'App',
+    components: {
+      Category,
+      Banner,
+    },
+    data() {
+      return {
+        categories: [] as {
+          categoryName: string
+          num: number
+          bgColor: string
+          image: string
+        }[],
+        banners: [] as {
+          title: string
+          ButtonbgColor: string
+          bgColor: string
+          bannerImage: string
+        }[],
+      }
+    },
 
   methods: {
     async fetchCategories() {
-      const result = await axios.get('http://localhost:3000/api/categories')
-      this.categories = result.data.map((cat: any) => ({
+      const result = await axios.get<CategoryDto[]>('http://localhost:3000/api/categories')
+      this.categories = result.data.map((cat: CategoryDto) => ({
         categoryName: cat.name,
         num: cat.productCount,
         bgColor: cat.color,
@@ -68,8 +80,8 @@ export default {
     },
 
     async fetchBanners() {
-      const result = await axios.get('http://localhost:3000/api/promotions')
-      this.banners = result.data.map((promo: any) => ({
+      const result = await axios.get<PromotionDto[]>('http://localhost:3000/api/promotions')
+      this.banners = result.data.map((promo: PromotionDto) => ({
         title: promo.title,
         ButtonbgColor: promo.buttonColor,
         bgColor: promo.color,
@@ -109,3 +121,4 @@ export default {
   gap: 20px;
 }
 </style>
+

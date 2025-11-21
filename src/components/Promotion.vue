@@ -10,7 +10,7 @@
 <script lang="ts">
     import ModButton from './Button.vue';
     export default {
-        name: 'Banner',
+        name: 'BannerCard',
         components: {
             ModButton
         },

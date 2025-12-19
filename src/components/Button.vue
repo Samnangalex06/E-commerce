@@ -20,7 +20,6 @@
 <style scoped>
   button {
       width: 110px;
-      height: 31px;
       display: flex;
       justify-content: center;
       align-items: center;

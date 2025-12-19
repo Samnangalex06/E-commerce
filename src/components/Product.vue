@@ -24,7 +24,7 @@
     <!-- Price Section -->
     <div class="price-section">
       <span class="price">${{ price }}</span>
-      <span class="old-price">2.51</span>
+      <span class="old-price">2</span>
     </div>
 
     <!-- Quantity Selector -->

@@ -52,14 +52,14 @@
     .content {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        padding: 75px 0px 79px 48px;
+        justify-content: center;
+        padding-left: 10px;
         width: 60%;
         height: 100%;
         font-family: 'Quicksand', sans-serif;
         font-weight: 600;
         font-size: 24px;
-        line-height: 32px;
         color: #253D4E;
     }
+    
 </style>

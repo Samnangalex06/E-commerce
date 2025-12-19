@@ -35,26 +35,27 @@ export default {
 <style scoped>
 
   .card {
-      width: 100%;
-      max-width: 137px;
-      height: 177px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      border-radius: 10px;
+    width: 100%;
+    max-width: 140px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
   }
   #category-image {
-      width: 120px;
-      height: 120px;
+    width: 100px;
+    height: 100px;
   }
   #category-name {
-      font-size: 16px;
-      color: rgba(37, 61, 78, 1);
+    font-size: 16px;
+    color: rgba(37, 61, 78, 1);
   }
-
+  
   #category-num {
-      font-size: 12px;
-      color: rgba(182, 182, 182, 1);
+    font-size: 11px;
+    padding-bottom: 5px;
+    color: rgba(182, 182, 182, 1);
   }
 </style>

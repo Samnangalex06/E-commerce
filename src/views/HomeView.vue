@@ -104,7 +104,7 @@ export default {
     }
   },
   computed: {
-    // expose store state to the template
+ 
     categories(this: { productStore: ReturnType<typeof useProductStore> }) {
       return this.productStore.categories;
     },
@@ -126,16 +126,6 @@ export default {
 </script>
 
 <style scoped>
-@keyframes fadeSlideUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 .full_display {
   width: 100%;
   display: flex;

@@ -61,5 +61,4 @@
         font-size: 24px;
         color: #253D4E;
     }
-    
 </style>
